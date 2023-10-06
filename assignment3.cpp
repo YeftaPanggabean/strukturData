@@ -1,4 +1,11 @@
-#include<iostream>
+/*
+Anggota Kelompok :
+- Yefta Panggabean
+- Rafael Sitohang
+- William Hutapea
+*/
+
+#include <iostream>
 using namespace std;
 
 struct Mahasiswa
@@ -7,6 +14,26 @@ struct Mahasiswa
     string nama;
     double ipk;
 };
+
+// #Insertion sort
+/*
+Algoritma ini membagi data menjadi dua bagian: satu bagian belum diurutkan dan satu bagian sudah diurutkan.
+Pertama, algoritma ini mengambil elemen pertama dari bagian yang belum diurutkan dan meletakkannya pada posisi yang sesuai dalam bagian yang sudah diurutkan.
+Langkah ini diulang sampai tidak ada lagi elemen yang tersisa dalam bagian yang belum diurutkan.
+*/
+int insertionSort(Mahasiswa maha[])
+{
+    for (int i = 0; i < 8; i++)
+    {
+        int banding = maha[i].nim;
+        int j = i - 1;
+        while ((j >= 0) && (maha[i].nim > banding))
+        {
+            maha[j + 1].nim = maha[j].nim;
+            j--;
+        }
+    }
+}
 
 int linearSearch(Mahasiswa maha[], int key)
 {
@@ -17,7 +44,13 @@ int linearSearch(Mahasiswa maha[], int key)
     }
     return -1;
 }
-
+void tampilan(Mahasiswa maha[]){
+      cout << "NIM\tNama\tIPK\n";
+    for (int i = 0; i < 8; i++)
+    {
+        cout << maha[i].nim << "\t" << maha[i].nama << "\t" << maha[i].ipk << endl;
+    }
+    }
 int main()
 {
     int key;
@@ -31,24 +64,24 @@ int main()
     maha[6] = {19008, "Alice", 3.56};
     maha[7] = {19002, "Ralf", 3.44};
 
-    cout << "NIM\tNama\tIPK\n";
-    for (int i = 0; i < 8; i++)
-    {
-        cout << maha[i].nim << "\t" << maha[i].nama << "\t" << maha[i].ipk << endl;
-    }
-
+tampilan(maha);    
+    
     bool search = true;
     char pilih;
 
-    while (search){
-        cout << "Masukkan NIM: ";
+    
+    while (search)
+    {
+        cout << "Masukkan NIM Yang Akan Dicari: ";
         cin >> key;
         int hasil = linearSearch(maha, key);
-        if (hasil != -1){
+        if (hasil != -1)
+        {
             cout << "Nim\tNama\tIPK" << endl;
             cout << maha[hasil].nim << "\t" << maha[hasil].nama << "\t" << maha[hasil].ipk << endl;
         }
-        else{
+        else
+        {
             cout << "NIM " << key << " tidak ditemukan" << endl;
         }
 
